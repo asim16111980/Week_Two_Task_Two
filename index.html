@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Main Style File -->
+    <link rel="stylesheet" href="style.css">
+    <title>To-Do List</title>
+  </head>
+  <body>
+    <!-- Content -->
+    <div class="container flex-column">
+      <h1 class="title">To-Do List</h1>
+      <div class="to-do-container flex-column round-10">
+        <div class="to-do-input">
+          <input type="text" class="input round-10" placeholder="Title...">
+            <input type="button" class="btn round-10" value="Add">
+          </div>
+          <div class="to-do-list flex-column round-10"><span class="text">There are no items.</span></div>
+        </div>
+      </div>
+      <script src="main.js"></script>
+  </body>
+</html>
