@@ -10,8 +10,16 @@
       href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
       rel="stylesheet"
     />
+    <!-- Font Awesome Library -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+      integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
     <!-- Main Style File -->
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css" />
     <title>To-Do List</title>
   </head>
   <body>
@@ -20,12 +28,14 @@
       <h1 class="title">To-Do List</h1>
       <div class="to-do-container flex-column rounded">
         <div class="to-do-input">
-          <input type="text" class="input rounded" placeholder="Title...">
-            <input type="button" class="btn rounded" value="Add">
-          </div>
-          <div class="to-do-list flex-column rounded"><span class="text">There are no items.</span></div>
+          <input type="text" class="input rounded" placeholder="Title..." />
+          <input type="button" class="btn rounded" value="Add" />
+        </div>
+        <div class="to-do-list flex-column rounded">
+          <span class="alt-text">There are no items.</span>
         </div>
       </div>
-      <script src="main.js"></script>
+    </div>
+    <script src="main.js"></script>
   </body>
 </html>

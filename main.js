@@ -1,36 +1,53 @@
 // This is main JS file
 // Get references for elements
-const newItemText = document.querySelector(".to-do-input .input");
-const newItemBtn = document.querySelector(".to-do-input .btn");
+const newTaskText = document.querySelector(".to-do-input .input");
+const newTaskBtn = document.querySelector(".to-do-input .btn");
 const todoList = document.querySelector(".to-do-list");
+const todoListAltText = document.querySelector(".to-do-list .alt-text");
 // Retrieve and display data from LocalStorage
-const todoItems = localStorage.getItem("todo-items");
-// Create new Todo item function
-const createNewItem = (text) => {
-  const newItemFragment = new DocumentFragment();
-  const newItemContainer = document.createElement("div");
-  newItemContainer.dataset.id = 1;
-  newItemContainer.classList.add("to-do-item", "rounded");
+// const todoTasks = localStorage.getTask("todo-Tasks");
+// Create new Todo Task function
+const createNewTask = (text) => {
+  const newTaskFragment = new DocumentFragment();
+  const newTaskContainer = document.createElement("div");
+  newTaskContainer.dataset.id = 1;
+  newTaskContainer.classList.add("to-do-task", "rounded");
   const readingMark = document.createElement("span");
-  readingMark.classList.add("reading-mark","rounded-full")
-  newItemContainer.appendChild(readingMark);
-  const itemText = document.createElement("span");
-  const itemTextNode = document.createTextNode(text);
-  itemText.append(itemTextNode);
-  newItemContainer.appendChild(itemText);
-  const itemEdit = document.createElement("button");
-  newItemContainer.appendChild(itemEdit);
-  const itemDelete = document.createElement("button");
-  newItemContainer.appendChild(itemDelete);
-  newItemFragment.appendChild(newItemContainer);
-  todoList.appendChild(newItemFragment);
+  readingMark.classList.add("reading-mark", "rounded-button");
+  newTaskContainer.appendChild(readingMark);
+  const TaskText = document.createElement("span");
+  const TaskTextNode = document.createTextNode(text);
+  TaskText.appendChild(TaskTextNode);
+  TaskText.classList.add("task-text");
+  newTaskContainer.appendChild(TaskText);
+  const TaskEdit = document.createElement("button");
+  TaskEdit.type = "button";
+  TaskEdit.innerHTML= `<i class="fa-solid fa-pen"></i>`;
+  TaskEdit.classList.add("btn", "rounded-button");
+  newTaskContainer.appendChild(TaskEdit);
+  const TaskDelete = document.createElement("button");
+  TaskDelete.type = "button";
+  newTaskContainer.appendChild(TaskDelete);
+  newTaskFragment.appendChild(newTaskContainer);
+  todoList.appendChild(newTaskFragment);
 };
-// newItemBtn click event
-newItemBtn.addEventListener("click", () => {
-  let trimmedText = newItemText.value.trim();
-  console.log(trimmedText);
+// Add new Todo Task function
+const addNewTask = () => {
+  let trimmedText = newTaskText.value.trim();
   if (trimmedText !== "") {
-    createNewItem(trimmedText);
-    newItemText.value = "";
+    todoListAltText.style.display = "none";
+    createNewTask(trimmedText);
+    newTaskText.value = "";
+  }
+};
+// newTaskBtn click event
+newTaskBtn.addEventListener("click", (e) => {
+  addNewTask();
+});
+// newTaskBtn keypress event
+window.addEventListener("keypress", (e) => {
+  console.log(e.key);
+  if ((e.key === "Enter")) {
+    addNewTask();
   }
 });
