@@ -24,18 +24,18 @@
   </head>
   <body>
     <!-- Content -->
-    <div class="container flex-col">
-      <h1 class="title">To-Do List</h1>
-      <div class="to-do-container flex-col rounded">
-        <div class="to-do-input">
-          <input type="text" class="input rounded" placeholder="Title..." />
-          <input type="button" class="btn btn-add font-18 rounded" value="Add" />
+    <div class="container flex flex-col px-16">
+      <h1 class="title text-primary">To-Do List</h1>
+      <div class="to-do-container flex flex-col rounded bg-primary">
+        <div class="to-do-input gap-8 p-8 flex">
+          <input type="text" class="input rounded p-8 font-18 b-2 b-primary" placeholder="Title..." />
+          <input type="button" class="btn btn-add font-18 rounded py-8 px-16 text-primary bg-light" value="Add" />
         </div>
-        <div class="to-do-list flex-col rounded">
+        <div class="to-do-list flex center flex-col rounded gap-8 p-8 b-2 b-primary bg-light">
           <span class="alt-text font-18">There are no items.</span>
         </div>
       </div>
-      <div class="snackbar rounded font-18"></div>
+      <div class="snackbar flex center rounded font-18 px-16 py-8 text-light"></div>
     </div>
     <script src="main.js"></script>
   </body>
