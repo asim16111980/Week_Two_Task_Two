@@ -157,8 +157,6 @@ body {
   min-height: 70px;
 }
 .to-do-task {
-  flex-wrap: wrap;
-justify-content: center;
   width: 100%;
 }
 .hide {
@@ -168,11 +166,12 @@ justify-content: center;
   -webkit-animation: fadeout-backward 2s;
 }
 .reading-mark {
+  cursor: pointer;
   color: var(--secondaryColor);
 }
 .task-text {
   cursor: pointer;
-  flex: 1;
+  width: 100%;
   padding: 4px 8px;
 }
 .btn-edit:hover {
@@ -247,15 +246,32 @@ justify-content: center;
   height: 40px;
 }
 /* MediaQuery */
-@media only screen and (max-width: 600px){
-  .btn-edit,.btn-delete{
-   width: 48%;
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+  .to-do-task {
+    flex-direction: column;
+  }
+  .task-text {
+    justify-content: center;
+  }
+  .btn-edit,
+  .btn-delete {
+    width: 100%;
     border-radius: 4px;
     -webkit-border-radius: 4px;
     -moz-border-radius: 4px;
     -ms-border-radius: 4px;
     -o-border-radius: 4px;
+  }
 }
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 601px) {
+  .to-do-container {
+    width: 70%;
+  }
+  .task-text {
+    flex: 1;
+  }
 }
 /* Animations */
 @-webkit-keyframes fadein {

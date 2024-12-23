@@ -161,7 +161,7 @@ window.addEventListener("load", () => {
   };
   // Handle the click event of todoList
   todoList.addEventListener("click", (e) => {
-    if (e.target.matches(".task-text")) {
+    if (e.target.matches(".task-text")||e.target.matches(".reading-mark")) {
       const parent = e.target.parentNode;
       parent.children[0].innerHTML = `<i class="fa-solid fa-check"></i>`;
       parent.style.backgroundColor = "var(--secondaryColor)";
