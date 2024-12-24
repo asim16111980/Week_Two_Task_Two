@@ -70,11 +70,11 @@ window.addEventListener("load", () => {
       : "";
 
     newTaskContainer.id = taskData.id;
-    newTaskContainer.innerHTML = `<span class="reading-mark btn-rounded bg-light">${
+    newTaskContainer.innerHTML = `<div class="task-body flex"><span class="reading-mark btn-rounded bg-light">${
       taskData.isReading ? `<i class="fa-solid fa-check"></i>` : ""
-      }</span><div class="task-text font-18 flex text-light">${
+      }</span><span class="task-text font-18 flex text-light">${
       taskData.text
-      }</div><button type="button" class= "btn btn-rounded btn-edit text-primary bg-light"  ${
+      }</span></div><button type="button" class= "btn btn-rounded btn-edit text-primary bg-light"  ${
       taskData.isReading ? "disabled" : ""
       }><i class="fa-solid fa-pen"></i></button><button type="button" class="btn btn-rounded btn-delete bg-light"><i class="fa-solid fa-trash-can"></i></button>`;
     newTaskFragment.appendChild(newTaskContainer);
@@ -135,7 +135,7 @@ window.addEventListener("load", () => {
         const task = e.currentTarget.parentNode;
         const parent = e.target.parentNode;
         updateLocalStorage(task.id, parent.children[0].value);
-        task.children[1].innerText = parent.children[0].value;
+        task.children[0].children[1].innerText = parent.children[0].value;
         e.currentTarget.remove();
         showSnackbar("The task has been edited.");
       }
@@ -157,16 +157,16 @@ window.addEventListener("load", () => {
   };
   // Handle the click event of todoList
   todoList.addEventListener("click", (e) => {
-    if (e.target.matches(".task-text") || e.target.matches(".reading-mark")) {
+    if (e.target.matches(".task-body") ) {
       const task = e.target.parentNode;
-      task.children[0].innerHTML = `<i class="fa-solid fa-check"></i>`;
+      task.children[0].children[0].innerHTML = `<i class="fa-solid fa-check"></i>`;
       task.style.backgroundColor = "var(--secondaryColor)";
-      task.children[2].disabled = true;
+      task.children[1].disabled = true;
       updateLocalStorage(task.id);
       showSnackbar("The task has been read.");
     } else if (e.target.matches(".btn-edit")) {
       const task = e.target.parentNode;
-      createTaskCard(task, task.children[1].innerHTML);
+      createTaskCard(task, task.children[0].children[1].innerHTML);
     } else if (e.target.matches(".btn-delete")) {
       removeTaskData(e.target.parentNode.id);
       deleteTask(e.target.parentNode);
