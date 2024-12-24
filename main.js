@@ -5,9 +5,6 @@ window.addEventListener("load", () => {
   const addTaskBtn = document.querySelector(".to-do-input .btn");
   const todoList = document.querySelector(".to-do-list");
   const todoListAltText = document.querySelector(".to-do-list .alt-text");
-  const lastTask = document.querySelector(
-    ".to-do-list > .to-do-task:last-child"
-  );
   const snackbar = document.querySelector(".snackbar");
   // Variable to stored tasks count
   let tasksCount;
@@ -28,7 +25,6 @@ window.addEventListener("load", () => {
   // Function to update tasks data property (isReading)  in localStorage
   const updateLocalStorage = (taskId, taskText = null) => {
     const retievedData = JSON.parse(localStorage.getItem("tasks"));
-    console.log(taskText);
     if (retievedData !== null) {
       [...retievedData].forEach((data) => {
         if (taskId == data.id) {
@@ -67,8 +63,7 @@ window.addEventListener("load", () => {
       "rounded",
       "flex",
       "gap-8",
-      "bg-primary",
-      "p-8"
+      "bg-primary"
     );
     taskData.isReading
       ? (newTaskContainer.style.backgroundColor = "var(--secondaryColor)")
@@ -77,11 +72,11 @@ window.addEventListener("load", () => {
     newTaskContainer.id = taskData.id;
     newTaskContainer.innerHTML = `<span class="reading-mark btn-rounded bg-light">${
       taskData.isReading ? `<i class="fa-solid fa-check"></i>` : ""
-    }</span><div class="task-text font-18 flex text-light">${
+      }</span><div class="task-text font-18 flex text-light">${
       taskData.text
-    }</div><button type="button" class= "btn btn-rounded btn-edit text-primary bg-light"  ${
+      }</div><button type="button" class= "btn btn-rounded btn-edit text-primary bg-light"  ${
       taskData.isReading ? "disabled" : ""
-    }><i class="fa-solid fa-pen"></i></button><button type="button" class="btn btn-rounded btn-delete bg-light"><i class="fa-solid fa-trash-can"></i></button>`;
+      }><i class="fa-solid fa-pen"></i></button><button type="button" class="btn btn-rounded btn-delete bg-light"><i class="fa-solid fa-trash-can"></i></button>`;
     newTaskFragment.appendChild(newTaskContainer);
     todoList.appendChild(newTaskFragment);
   };
@@ -155,22 +150,23 @@ window.addEventListener("load", () => {
       showSnackbar("The task has been deleted.");
       tasksCount--;
       if (tasksCount === 0) {
+        localStorage.clear();
         todoListAltText.style.display = "block";
       }
     }, 1500);
   };
   // Handle the click event of todoList
   todoList.addEventListener("click", (e) => {
-    if (e.target.matches(".task-text")||e.target.matches(".reading-mark")) {
-      const parent = e.target.parentNode;
-      parent.children[0].innerHTML = `<i class="fa-solid fa-check"></i>`;
-      parent.style.backgroundColor = "var(--secondaryColor)";
-      parent.children[2].disabled = true;
-      updateLocalStorage(parent.id);
+    if (e.target.matches(".task-text") || e.target.matches(".reading-mark")) {
+      const task = e.target.parentNode;
+      task.children[0].innerHTML = `<i class="fa-solid fa-check"></i>`;
+      task.style.backgroundColor = "var(--secondaryColor)";
+      task.children[2].disabled = true;
+      updateLocalStorage(task.id);
       showSnackbar("The task has been read.");
     } else if (e.target.matches(".btn-edit")) {
-      const parent = e.target.parentNode;
-      createTaskCard(parent, parent.children[1].innerHTML);
+      const task = e.target.parentNode;
+      createTaskCard(task, task.children[1].innerHTML);
     } else if (e.target.matches(".btn-delete")) {
       removeTaskData(e.target.parentNode.id);
       deleteTask(e.target.parentNode);
