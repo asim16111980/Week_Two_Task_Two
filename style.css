@@ -27,7 +27,7 @@
   padding: 0;
   box-sizing: border-box;
   -moz-box-sizing: border-box;
-  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
 }
 body {
   font-family: "Inter", sans-serif;
@@ -71,11 +71,6 @@ body {
   border: none;
   cursor: pointer;
 }
-/* .font-16{
-  font-size: 16px;
-  font-weight: 500;
-  line-height: 16px;
-} */
 .font-18 {
   font-size: 18px;
   font-weight: 600;
@@ -117,7 +112,7 @@ body {
 }
 /* Content Style */
 .title {
-  margin: 24px auto;
+  margin: 20px auto;
   font-size: xx-large;
 }
 .container {
@@ -127,6 +122,7 @@ body {
 .to-do-container {
   width: 100%;
   gap: 0;
+  overflow: hidden;
 }
 .to-do-container .to-do-input {
   width: 100%;
@@ -155,6 +151,11 @@ body {
 .to-do-container .to-do-list {
   width: 100%;
   min-height: 70px;
+  overflow: auto;
+  flex:1;
+}
+.alt-text{
+  line-height: 50px;
 }
 .to-do-task {
   width: 100%;
@@ -257,12 +258,14 @@ body {
 /* Extra small devices (phones, 600px and down) */
 @media only screen and (max-width: 600px) {
   .to-do-task {
-    flex-direction: column;
+    flex-wrap: wrap;
     padding: 8px;
+    min-height:166px;
+    justify-content: center;
   }
   .task-body{
     flex-direction:column;
-    width: 100%;
+    flex: 100%;
   }
   .task-text {
     flex: 1;
@@ -271,7 +274,8 @@ body {
   }
   .btn-edit,
   .btn-delete {
-    width: 100%;
+    width: 47%;
+    height: 36px;
     border-radius: 4px;
     -webkit-border-radius: 4px;
     -moz-border-radius: 4px;
